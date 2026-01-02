@@ -1,0 +1,7 @@
+echo "✨ Running Biome format and organize imports..."
+pnpm format
+
+echo "🔧 Organizing imports..."
+pnpm exec biome check --write .
+
+echo "✅ Formatting and import organization complete!"
