@@ -25,20 +25,14 @@ jobs:
         with:
           node-version: 20
           cache: "pnpm"
-          registry-url: "https://npm.pkg.github.com"
-          scope: "@team-numberone"
 
-      - name: Configure npmrc for GitHub Packages (if original repo)
-        if: github.repository == 'Team-NumberOne/119-web-client'
+      - name: Configure npmrc for GitHub Packages
         run: |
-          echo "@team-numberone:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "@team-numberone:registry=https://npm.pkg.github.com" > .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN || secrets.NPM_TOKEN }}
-        continue-on-error: ${{ github.repository != 'Team-NumberOne/119-web-client' }}
 
       - name: Run linter
         run: pnpm lint
@@ -64,20 +58,14 @@ jobs:
         with:
           node-version: 20
           cache: "pnpm"
-          registry-url: "https://npm.pkg.github.com"
-          scope: "@team-numberone"
 
-      - name: Configure npmrc for GitHub Packages (if original repo)
-        if: github.repository == 'Team-NumberOne/119-web-client'
+      - name: Configure npmrc for GitHub Packages
         run: |
-          echo "@team-numberone:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "@team-numberone:registry=https://npm.pkg.github.com" > .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN || secrets.NPM_TOKEN }}
-        continue-on-error: ${{ github.repository != 'Team-NumberOne/119-web-client' }}
 
       - name: Build project
         run: pnpm build
