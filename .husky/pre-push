@@ -1,11 +1,5 @@
-echo "✨ Running Biome format and organize imports..."
-pnpm format
-
-echo "🔧 Organizing imports..."
-pnpm exec biome check --write .
-
-echo "🔍 Running Biome lint check..."
-pnpm lint
-
-echo "✅ All checks passed!"
+# CI에서 이미 체크하므로 pre-push는 선택적으로만 사용
+# 필요시 아래 주석을 해제하여 빌드 체크 활성화
+# echo "🔨 Running build check..."
+# pnpm build
 
